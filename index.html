@@ -1,0 +1,282 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<title>CSS REACT TALK</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=792, user-scalable=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<link rel="stylesheet" href="shower/themes/ribbon/styles/screen.css">
+</head>
+<body class="full">
+	<header class="caption">
+		<h1>CSS REACT TALK</h1>
+		<p>Ivan Kotov, Zvooq.com</p>
+	</header>
+
+	<section class="slide cover" id="Cover"><div>
+		<h2>CSS REACT TALK</h2>
+
+		<h3>Иван Котов, Zvooq.com<br/>
+		November Moscow Tech Meetup</h3>
+		<img width="100%" height="100%" src="pictures/cover.jpg" alt="">
+		<img class="logo" src="pictures/tile152x152.png" alt="">
+		<p class="note">image Kilian Schönberger</p>
+		<style>
+			#Cover .logo {
+				position: absolute;
+				top: 250px;
+				right: 80px;
+				left: initial;
+			}
+			#Cover h2 {
+				margin:30px 0 0;
+				color:#00a0e6;
+				text-align:center;
+				font-size:70px;
+				}
+			#Cover h3 {
+				margin:250px 0 0;
+				color:#00a0e6;
+				text-align:center;
+				font-size:42px;
+				}
+			#Cover .note {
+				position: absolute;
+				bottom: 10px;
+				left: 10px;
+			}
+			#Cover p {
+				margin:10px 0 0;
+				text-align:center;
+				color:#FFF;
+				font-style:italic;
+				font-size:20px;
+				}
+				#Cover p a {
+					color:#FFF;
+					}
+		</style>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Fundamentals</h2>
+		<ol>
+			<li>
+				<code>return &lt;button <mark class="important">style=</mark>{styleObject}&gt; ButtonName&lt;/button&gt;</code></li>
+			<li>
+				<code>return &lt;button <mark class="important">className=</mark>"btn"&gt; ButtonName&lt;/button&gt;</code>
+			</li>
+		</ol>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>classnames by JedWatson</h2>
+
+		<pre>
+			<code>var classNames = <mark class="important">require('classnames'),</mark></code>
+			<code>	LeColobok = React.createClass({</code>
+			<code>  render() {</code>
+			<code>    var colobokClass = classNames({</code>
+			<code>      'LeColobok': true,</code>
+			<code>      'LeColobok__good': this.state.isPressed</code>
+			<code>    })</code>
+			<code>    return &lt;button className=<mark class="important">{colobokClass}</mark>&gt;Cancel&lt;/button&gt;</code>
+			<code>  }})</code>
+		</pre>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>План</h2>
+		<ol>
+			<li>Штуки для classnames</li>
+			<li>Штуки для inline styles</li>
+			<li>Методологии именования классов</li>
+			<li>BEM mixin</li>
+			<li>Сборка стилей</li>
+		</ol>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>CSS — часть вайшей экосистемы компонентов</h2>
+		<ol>
+			<li>Predictable</li>
+			<li>Reusable</li>
+			<li>Maintainable</li>
+			<li>Scalable</li>
+		</ol>
+		<p class="note">Установка/отсутствие стиля может влиять на поведение</p>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>CSS Naming</h2>
+		<ol>
+			<li>SMACSS: <code>leColobok class="rus-Colobok is-tasty"</code></li>
+			<li>suitcss</li>
+			<li>BEM <code>leColobok class="colobok colobok__tasty"</code></li>
+			<li>BEVIS <code>leColobok class="colobok _tasty_yes"</code></li>
+		</ol>
+		<p class="note">CSS Modules - сборка</p>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>BEM это...</h2>
+		<figure>
+			<blockquote>
+				<p>БЭМ — это жесткий и очень топорный свод правил, который не несет никакой практической пользы,
+				если не брать в расчет проблемы устаревшей табличной верстки. БЭМ <strong>уродует код и разрушает все прекрасное</strong>,
+				что есть в процессе верстки. Любое соприкосновение с БЭМ напоминает
+				бессмысленное и утомительное развешивание костылей.</p>
+			</blockquote>
+			<figcaption>http://habrahabr.ru/users/Fibril/</figcaption>
+		</figure>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>BEM это...</h2>
+		<figure>
+			<blockquote>
+				<p>If you follow all of the rules (of BEM), you’ll avoid the single hardest problem in CSS:
+				<mark class="important">Getting your rules to match the elements you want,
+				without them accidentally matching the elements you don’t.</mark></p>
+			</blockquote>
+			<figcaption>Philip Walton</figcaption>
+		</figure>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Именование стилей</h2>
+		<ol>
+			<li>albburtsev/bem-cn: SMACSS, BEM</li>
+			<li>azproduction/b_: BEM, BEVIS</li>
+		</ol>
+		<p class="note">dfilatov/bem-react не про стили, это гибрид</p>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Примеры</h2>
+		<ol>
+			<li>
+				<code>b('leColobok', <mark class="important">{escaped: 'from-granpa'}</mark>) ->-> </code>
+				<code>'leColobok leColobok<mark class="important">_escaped_from-granpa</mark>';</code>
+			</li>
+			<li>
+				<code>b('leColobok', <mark class="important">'smile'</mark>, {size: 'xxl'}) ->-> </code>
+				<code>'leColobok<mark class="important">__smile</mark> leColobok<mark class="important">__smile</mark>_size_xxl';</code>
+			</li>
+		</ol>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>CSS Inheritance</h2>
+			<pre>
+				<code>.fairyTailBeast</code>
+				<code>	magic: 10px</code>
+				<code>	border: 1px solid #eee</code>
+				<code>.leColobok</code>
+				<code>	<mark class="important">@extend</mark> .fairyTailBeast</code>
+				<code>	color: #E2E21E</code>
+			</pre>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Беcклассовый подход</h2>
+		<img width="100%" height="100%" src="pictures/commies.jpg" alt="">
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Radium</h2>
+		<img src="pictures/Radium_.png" alt="">
+		<p class="note">оооочень модно</p>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Radium Example</h2>
+
+		<pre>
+			<code><mark class="important">@Radium</mark></code>
+			<code>class LeColobok extends React.Component {</code>
+			<code>	render() { return ( </code>
+			<code>    &lt;button style=<mark class="important">{[</mark></code>
+			<code>      colobokStyles.base,</code>
+			<code>      colobokStyles['is-tasty']</code>
+			<code>    <mark class="important">]}</mark>&gt;</code>
+			<code>    Cancel&lt;/button&gt;)}}</code>
+		</pre>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Беcклассовый подход отвратителен</h2>
+		<ol>
+			<li>Бегство от стандартов</li>
+			<li>Нарушение принципа Single responsibility</li>
+			<li>Поэтому сложнее в переиспользовании</li>
+			<li>Увеличение кода страница (избыточность)</li>
+			<li>Client side only: vendor prefixes, media queries</li>
+			<li>Конфликт с ReactCSSTransitionGroup</li>
+		</ol>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>CSS/React Principles by Zvooq</h2>
+		<ol>
+			<li>1 Component = 1 Block</li>
+			<li class="next">CSS in separate file</li>
+			<li class="next">Stylus + PostCSS</li>
+			<li class="next"><code>b_</code> mixin</li>
+			<li class="next">Миксин знает название компонента</li>
+			<li class="next">Миксин знает state</li>
+		</ol>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Использование миксина b_</h2>
+		<pre>
+			<code>	<mark class="important">LeColobok</mark> = React.createClass({</code>
+			<code>	mixins: [ BEM ],</code>
+			<code>	getInitialState() { return <mark class="important">{ isGood: true };</mark> },</code>
+			<code>	render() { return &lt;button </code>
+			<code>		className={<mark class="important">this.b_('_isGood')</mark>}&gt;Cancel&lt;/button&gt;</code>
+			<code>  		// 'leColobok leColobok_isGood'</code>
+			<code>  }})</code>
+		</pre>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Еще примеры для b_</h2>
+		<ol>
+			<li>
+				<code>b_([ '_isTasty', '_escapedFromGranpa' ]) ->-> </code>
+				<code>// this.state === {escapedFromGranpa : false} </code>
+				<code>'leColobok leColobok_isTasty'</code>
+			</li>
+			<li>
+				<code>b_('-smile_xxl') ->-> </code>
+				<code>'leColobok-smile leColobok-smile_xxl'</code>
+			</li>
+		</ol>
+	</div></section>
+
+	<section class="slide cover"><div>
+		<img width="100%" height="100%" src="pictures/banana.png" alt="">
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>React — банан...</h2>
+		<p class="note">...который поставляется вместе с обезьяной и джунглями впридачу</p>
+		<img src="pictures/banana.png" alt="">
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>CSS build for React</h2>
+		<ol>
+			<li>Webpack</li>
+			<li>Loaders: post | pre-processors</li>
+			<li>CSS Modules</li>
+		</ol>
+		<p class="note"><a href="https://learn.javascript.ru/webpack-screencast">Илья Кантор выложил отличные скринкасты</a></p>
+	</div></section>
+
+	<div class="progress"><div></div></div>
+	<script src="shower/shower.min.js"></script>
+</body>
+</html>
